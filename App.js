@@ -13,7 +13,9 @@ import React, {
 
 import {
   AppRegistry,
-  StyleSheet
+  StyleSheet,
+  View,
+  StatusBar
 } from 'react-native';
 
 import {
@@ -38,85 +40,20 @@ import {
   createStackNavigator
 } from 'react-navigation-stack'
 
-class LoginActivity extends Component {
-  static navigationOptions = {
-    title: 'LoginActivity',
-  };
+import Routes from './src/Routes';
 
-  OpenRegisterActivityFunction = ()=> {
-    this.props.navigation.navigate('Second');
-  }
-
+export default class App extends Component<{}> {
   render() {
-    return(
-
-      <Container>
-      <Form>
-        <FormItem floatingLabel>
-          <Label>Email</Label>
-          <Input />
-        </FormItem>
-        <FormItem floatingLabel last>
-          <Label>Password</Label>
-          <Input secureTextEntry={true} />
-        </FormItem>
-        <Button
-        title = 'Login'
-        full light primary style={{ paddingBottom: 4, paddingTop: 4, marginBottom: 4, marginStart: 6, marginEnd: 6 }}>
-          <Text>Login</Text>
-        </Button>
-        <Button
-        onPress = {this.OpenRegisterActivityFunction} title = 'Register' 
-        full light primary style={{ marginStart: 6, marginEnd: 6 }}>
-          <Text>Register</Text>
-        </Button>
-      </Form>
-    </Container>
-
+    return (
+      <View style={styles.container}>
+        <Routes/>
+      </View>
     );
   }
 }
 
-class RegisterActivity extends Component {
-  static navigateOptions = {
-    title: 'RegisterActivity'
-  };
-
-  render() {
-    return(
-      <Container>
-        <Form>
-        <FormItem floatingLabel>
-          <Label>Email</Label>
-          <Input />
-        </FormItem>
-        <FormItem floatingLabel>
-          <Label>Name</Label>
-          <Input />
-        </FormItem>
-        <FormItem floatingLabel>
-          <Label>Password</Label>
-          <Input secureTextEntry={true}/>
-        </FormItem>
-        </Form>
-        <Button
-        title = 'Register'
-        full primary style={{ paddingBottom: 4, paddingTop: 4, marginStart: 6, marginEnd: 6 }}>
-          <Text>Register</Text>
-        </Button>
-      </Container>
-    );
+const styles = StyleSheet.create({
+  container : {
+    flex : 1,
   }
-}
-
-// const App = () => {
-//   return (
-//   );
-// };
-
-const AppNavigator = createStackNavigator({
-  First: { screen: LoginActivity },
-  Second: { screen: RegisterActivity }
 });
-
-export default createAppContainer(AppNavigator);
